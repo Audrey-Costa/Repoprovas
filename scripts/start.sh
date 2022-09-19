@@ -3,7 +3,6 @@
 case "$1" in 
     test)
         dotenv -e .env.test prisma migrate dev
-        dotenv -e .env.test prisma db seed
         dotenv -e .env.test jest
     ;;
     start)
