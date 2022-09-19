@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 
 export async function registerUser(newUser: RegisterAuth){
     delete newUser.confirmPassword;
-    console.log(newUser)
 
     const user = await authRepository.findUser(newUser.email);
     if(user){
