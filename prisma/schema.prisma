@@ -25,3 +25,8 @@ model Terms {
   id   Int    @id @default(autoincrement())
   number Int @unique
 }
+
+model Categories {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
