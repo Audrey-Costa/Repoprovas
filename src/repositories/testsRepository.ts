@@ -66,3 +66,25 @@ export async function findTestByDiscipline() {
         throw {type: "Not Found", message: "There aren't tests yet!"}
     }
 }
+
+
+export async function findTestByTeacher() {
+    try {
+        const tests = await prisma.teachers.findMany({
+           select:{
+            name: true,
+            teachersDisciplines:{select:{
+                tests:{select:{
+                    categories:{select:{
+                        name: true,
+                        tests:{select:{name: true}}
+                    }},
+            }}
+                }}
+            }}
+        )
+        return tests;
+    } catch (error) {
+        throw {type: "Not Found", message: "There aren't tests yet!"}
+    }
+}

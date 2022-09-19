@@ -13,3 +13,8 @@ export async function findTestByDiscipline() {
     const tests = await testRepository.findTestByDiscipline();
     return tests;
 }
+
+export async function findTestByTeacher() {
+    const tests = await testRepository.findTestByTeacher();
+    return tests;
+}
