@@ -8,3 +8,8 @@ export async function registerTest(newTest: TestType){
     const teachersDisciplinesId = await testRepository.findTeachersDisciplines(teacherId, disciplineId);
     await testRepository.registerTest(newTest.name, newTest.pdfUrl, categoryId, teachersDisciplinesId);
 }
+
+export async function findTestByDiscipline() {
+    const tests = await testRepository.findTestByDiscipline();
+    return tests;
+}

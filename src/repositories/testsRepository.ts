@@ -41,3 +41,28 @@ export async function findTeachersDisciplines(teacherId: number, disciplineId: n
         throw {type: "Not Found", message: "This teacher doesnt teachs this discipline!"}
     }
 }
+
+export async function findTestByDiscipline() {
+    try {
+        const tests = await prisma.terms.findMany({
+           select:{
+            number: true,
+            disciplines:{select:{
+                name: true,
+                teachersDisciplines: {select: {
+                    teachers: {
+                        select:{
+                            name: true
+                        },
+                    }, tests: {select:{
+                        categories:{select:{name:true}},
+                        name:true}}
+                }}
+            }}
+           }
+        })
+        return tests;
+    } catch (error) {
+        throw {type: "Not Found", message: "There aren't tests yet!"}
+    }
+}
