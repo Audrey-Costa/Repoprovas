@@ -31,6 +31,7 @@ model Terms {
 model Categories {
   id   Int    @id @default(autoincrement())
   name String @unique
+  tests Tests[]
 }
 
 model Disciplines {
@@ -47,4 +48,15 @@ model TeachersDisciplines {
   disciplineId Int
   teachers Teachers @relation(fields: [teacherId], references: [id])
   teacherId Int
+  tests Tests[]
+}
+
+model Tests {
+  id   Int    @id @default(autoincrement())
+  name String
+  pdfUrl String
+  categories Categories @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  teachersDisciplines TeachersDisciplines @relation(fields: [teachersDisciplinesId], references: [id])
+  teachersDisciplinesId Int
 }
